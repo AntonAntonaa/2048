@@ -1,0 +1,18 @@
+.tabl {
+  width: 400px;
+  height: 400px;
+  background-color: black;
+  color: red;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  background-color: green;
+  border-radius: 25px;
+  flex: 0 0 auto;
+  margin: 10px;
+  text-align: center;
+}
