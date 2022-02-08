@@ -1,8 +1,8 @@
 let game = function () {
   let location = [
     [2, 0, 0, 0],
-    [2, 4, 0, 0],
     [2, 0, 0, 0],
+    [0, 0, 0, 0],
     [0, 0, 0, 0],
   ];
 
@@ -51,7 +51,7 @@ let game = function () {
 
   function movedown() {
     transposearr();
-    
+
     const newlocation = [];
     for (let arr of location) {
       const res = [];
@@ -75,9 +75,9 @@ let game = function () {
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
       }
-      newlocation.push(res);
+      newlocation.push(res.reverse());
     }
-    location = newlocation.reverse();
+    location = newlocation;
     transposearr();
   }
 
@@ -135,9 +135,9 @@ let game = function () {
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
       }
-      newlocation.push(res);
+      newlocation.push(res.reverse());
     }
-    location = newlocation.reverse();
+    location = newlocation;
   }
 
   function over() {
@@ -182,16 +182,24 @@ let game = function () {
     } else if (event.code == "ArrowDown") {
       movedown();
     }
-    //randomcoordin ()
-    text();
-    over();
+    if (event.code.startsWith("Arrow")) {
+      randomcoordin();
+      text();
+      if (over()) {
+        alert("проебано");
+      }
+    }
   };
 
   function text() {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
         const textin = document.getElementById(i + "-" + j);
-        textin.innerHTML = location[i][j];
+        if (location[i][j] == 0) {
+          textin.innerHTML = " ";
+        } else {
+          textin.innerHTML = location[i][j];
+        }
       }
     }
   }
