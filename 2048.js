@@ -45,7 +45,7 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation;
+    location = newlocation ;
     transposearr();
   }
 
@@ -78,7 +78,8 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation;
+    location = newlocation .reverse(); 
+    
     transposearr();
   }
 
@@ -138,7 +139,7 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation;
+    location = newlocation.reverse();
   }
 
   function over() {
@@ -182,7 +183,9 @@ let game = function () {
       moverigt();
     } else if (event.code == "ArrowDown") {
       movedown();
+      
     }
+    randomcoordin ()
     text();
     over();
   };
