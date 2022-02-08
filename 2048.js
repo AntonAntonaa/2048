@@ -124,7 +124,7 @@ let game = function () {
           res.push(filter[0]);
           break;
         }
-        if (filter == filter[1]) {
+        if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
           filter.splice(0, 2);
         } else {
@@ -183,10 +183,12 @@ let game = function () {
       movedown();
     }
     if (event.code.startsWith("Arrow")) {
-      randomcoordin();
-      text();
       if (over()) {
+        text();
         alert("проебано");
+      } else {
+        randomcoordin();
+        text();
       }
     }
   };
