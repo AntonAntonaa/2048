@@ -1,8 +1,8 @@
 let game = function () {
   let location = [
     [2, 0, 0, 0],
+    [2, 4, 0, 0],
     [2, 0, 0, 0],
-    [0, 0, 0, 0],
     [0, 0, 0, 0],
   ];
 
@@ -45,20 +45,19 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation ;
+    location = newlocation;
     transposearr();
   }
 
   function movedown() {
     transposearr();
+    
     const newlocation = [];
     for (let arr of location) {
       const res = [];
-      const filter = arr
-        .filter(function (elem) {
-          return elem != 0;
-        })
-        .reverse();
+      const filter = arr.reverse().filter(function (elem) {
+        return elem != 0;
+      });
       while (filter.length > 0) {
         if (filter.length == 1) {
           res.push(filter[0]);
@@ -78,8 +77,7 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation .reverse(); 
-    
+    location = newlocation.reverse();
     transposearr();
   }
 
@@ -183,9 +181,8 @@ let game = function () {
       moverigt();
     } else if (event.code == "ArrowDown") {
       movedown();
-      
     }
-    randomcoordin ()
+    //randomcoordin ()
     text();
     over();
   };
