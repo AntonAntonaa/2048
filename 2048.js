@@ -12,7 +12,7 @@ let game = function () {
       newlocation.push([]);
     }
     for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; i++) {
+      for (let j = 0; j < 4; j++) {
         newlocation[j].push(location[i][j]);
       }
     }
@@ -32,13 +32,13 @@ let game = function () {
           res.push(filter[0]);
           break;
         }
-      }
-      if (filter.length[0] == filter.length[1]) {
-        res.push(filter[0] * 2);
-        res.splice(0, 2);
-      } else {
-        res.push(filter[0]);
-        res.splice(0, 1);
+        if (filter[0] == filter[1]) {
+          res.push(filter[0] * 2);
+          res.splice(0, 2);
+        } else {
+          res.push(filter[0]);
+          res.splice(0, 1);
+        }
       }
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
@@ -51,6 +51,7 @@ let game = function () {
 
   function movedown() {
     transposearr();
+    const newlocation = [];
     for (let arr of location) {
       const res = [];
       const filter = arr
@@ -63,13 +64,14 @@ let game = function () {
           res.push(filter[0]);
           break;
         }
-      }
-      if (filter.length[0] == filter.length[1]) {
-        res.push(filter[0] * 2);
-        res.splice(0, 2);
-      } else {
-        res.push(filter[0]);
-        res.splice(0, 1);
+
+        if (filter[0] == filter[1]) {
+          res.push(filter[0] * 2);
+          res.splice(0, 2);
+        } else {
+          res.push(filter[0]);
+          res.splice(0, 1);
+        }
       }
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
@@ -92,13 +94,14 @@ let game = function () {
           res.push(filter[0]);
           break;
         }
-      }
-      if (filter.length[0] == filter.length[1]) {
-        res.push(filter[0] * 2);
-        res.splice(0, 2);
-      } else {
-        res.push(filter[0]);
-        res.splice(0, 1);
+
+        if (filter[0] == filter[1]) {
+          res.push(filter[0] * 2);
+          res.splice(0, 2);
+        } else {
+          res.push(filter[0]);
+          res.splice(0, 1);
+        }
       }
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
@@ -109,6 +112,7 @@ let game = function () {
   }
 
   function moverigt() {
+    const newlocation = [];
     for (let arr of location) {
       const res = [];
       const filter = arr
@@ -121,13 +125,13 @@ let game = function () {
           res.push(filter[0]);
           break;
         }
-      }
-      if (filter.length[0] == filter.length[1]) {
-        res.push(filter[0] * 2);
-        res.splice(0, 2);
-      } else {
-        res.push(filter[0]);
-        res.splice(0, 1);
+        if (filter == filter[1]) {
+          res.push(filter[0] * 2);
+          res.splice(0, 2);
+        } else {
+          res.push(filter[0]);
+          res.splice(0, 1);
+        }
       }
       for (let i = 0; arr.length > res.length; i++) {
         res.push(0);
@@ -169,6 +173,29 @@ let game = function () {
       }
     }
   }
+  document.onkeydown = function (event) {
+    if (event.code == "ArrowLeft") {
+      moveleft();
+    } else if (event.code == "ArrowUp") {
+      moveup();
+    } else if (event.code == "ArrowRight") {
+      moverigt();
+    } else if (event.code == "ArrowDown") {
+      movedown();
+    }
+    text();
+    over();
+  };
+
+  function text() {
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        const textin = document.getElementById(i + "-" + j);
+        textin.innerHTML = location[i][j];
+      }
+    }
+  }
+  text();
 };
 
 game();

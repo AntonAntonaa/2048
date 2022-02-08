@@ -2,9 +2,10 @@
   width: 400px;
   height: 400px;
   background-color: black;
-  color: red;
+  color: rgb(0, 0, 0);
   display: flex;
   flex-wrap: wrap;
+  font-size: 50px;
 }
 
 .cell {
@@ -16,3 +17,4 @@
   margin: 10px;
   text-align: center;
 }
+
