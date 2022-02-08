@@ -1,9 +1,9 @@
 let game = function () {
   let location = [
-    [2, 0, 0, 0],
-    [2, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
+    [2, 8, 32, 16],
+    [128, 64, 2, 8],
+    [32, 16, 8, 4],
+    [16, 4, 4, 2],
   ];
 
   function transposearr() {
@@ -162,16 +162,22 @@ let game = function () {
   }
 
   function randomcoordin() {
-    while (true) {
-      const i = Math.floor(Math.random() * 4);
-      const j = Math.floor(Math.random() * 4);
-      if (location[i][j] == 0) {
-        const num = Math.random() > 0.9 ? 4 : 2;
-        location[i][j] = num;
-        break;
+    const arr = [];
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (location[i][j] == 0) {
+          arr.push([i, j]);
+        }
       }
     }
+    if (arr.length > 0) {
+      const arr1 = Math.floor(Math.random() * arr.length);
+      const arr2 = arr[arr1]
+      const num = Math.random() > 0.9 ? 4 : 2
+      location[arr2[0]][arr2[1]]=num
+    } 
   }
+
   document.onkeydown = function (event) {
     if (event.code == "ArrowLeft") {
       moveleft();
