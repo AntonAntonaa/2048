@@ -34,10 +34,10 @@ let game = function () {
         }
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
-          res.splice(0, 2);
+          filter.splice(0, 2);
         } else {
           res.push(filter[0]);
-          res.splice(0, 1);
+          filter.splice(0, 1);
         }
       }
       for (let i = 0; arr.length > res.length; i++) {
@@ -67,10 +67,10 @@ let game = function () {
 
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
-          res.splice(0, 2);
+          filter.splice(0, 2);
         } else {
           res.push(filter[0]);
-          res.splice(0, 1);
+          filter.splice(0, 1);
         }
       }
       for (let i = 0; arr.length > res.length; i++) {
@@ -97,10 +97,10 @@ let game = function () {
 
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
-          res.splice(0, 2);
+          filter.splice(0, 2);
         } else {
           res.push(filter[0]);
-          res.splice(0, 1);
+          filter.splice(0, 1);
         }
       }
       for (let i = 0; arr.length > res.length; i++) {
@@ -127,10 +127,10 @@ let game = function () {
         }
         if (filter == filter[1]) {
           res.push(filter[0] * 2);
-          res.splice(0, 2);
+          filter.splice(0, 2);
         } else {
           res.push(filter[0]);
-          res.splice(0, 1);
+          filter.splice(0, 1);
         }
       }
       for (let i = 0; arr.length > res.length; i++) {
