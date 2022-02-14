@@ -31,6 +31,19 @@
 h1 {
   text-align: center;
   font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+p {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+}
+
+.restart {
+  background-color:bisque
+}
+.restopscore {
+  background-color: lightcoral;
 }
 
 .n2{background-color: rgb(255, 0, 0);}
