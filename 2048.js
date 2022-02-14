@@ -1,10 +1,16 @@
 let game = function () {
   let location = [
-    [2, 8, 32, 16],
-    [128, 64, 2, 8],
-    [32, 16, 8, 4],
-    [16, 4, 4, 2],
+    [2, 4, 8, 16],
+    [32, 64, 128, 256],
+    [512, 1024, 2048, 4096],
+    [8192, 0, 0, 0],
   ];
+  let score = 0;
+  let topscore = 0;
+  let topscore1 = localStorage.getItem("topscore");
+  if (topscore1 != null) {
+    topscore = Number(topscore1);
+  }
 
   function transposearr() {
     const newlocation = [];
@@ -34,6 +40,7 @@ let game = function () {
         }
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
+          updscore(filter[0] * 2);
           filter.splice(0, 2);
         } else {
           res.push(filter[0]);
@@ -66,6 +73,7 @@ let game = function () {
 
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
+          updscore(filter[0] * 2);
           filter.splice(0, 2);
         } else {
           res.push(filter[0]);
@@ -96,6 +104,7 @@ let game = function () {
 
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
+          updscore(filter[0] * 2);
           filter.splice(0, 2);
         } else {
           res.push(filter[0]);
@@ -126,6 +135,7 @@ let game = function () {
         }
         if (filter[0] == filter[1]) {
           res.push(filter[0] * 2);
+          updscore(filter[0] * 2);
           filter.splice(0, 2);
         } else {
           res.push(filter[0]);
@@ -172,10 +182,10 @@ let game = function () {
     }
     if (arr.length > 0) {
       const arr1 = Math.floor(Math.random() * arr.length);
-      const arr2 = arr[arr1]
-      const num = Math.random() > 0.9 ? 4 : 2
-      location[arr2[0]][arr2[1]]=num
-    } 
+      const arr2 = arr[arr1];
+      const num = Math.random() > 0.9 ? 4 : 2;
+      location[arr2[0]][arr2[1]] = num;
+    }
   }
 
   document.onkeydown = function (event) {
@@ -192,6 +202,7 @@ let game = function () {
       if (over()) {
         text();
         alert("проебано");
+        restart();
       } else {
         randomcoordin();
         text();
@@ -199,19 +210,55 @@ let game = function () {
     }
   };
 
+  function restart() {
+    location = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+    score = 0;
+    randomcoordin();
+    randomcoordin();
+    text();
+  }
+
+  function updscore(sc) {
+    score += sc;
+    if (score > topscore) {
+      topscore = score;
+      localStorage.setItem("topscore", topscore);
+    }
+  }
+
+  function res() {
+    localStorage.removeItem("topscore");
+    topscore = 0;
+    text();
+  }
+
+  document.querySelector(".restopscore").addEventListener("click", res);
+
   function text() {
+    document.querySelector("#score1").innerHTML = score;
+    document.querySelector("#score2").innerHTML = topscore;
+
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
         const textin = document.getElementById(i + "-" + j);
         if (location[i][j] == 0) {
           textin.innerHTML = " ";
+          textin.className = "cell";
         } else {
           textin.innerHTML = location[i][j];
+          textin.className = "cell n" + location[i][j];
         }
       }
     }
   }
   text();
+
+  document.querySelector(".restart").addEventListener("click", restart);
 };
 
 game();

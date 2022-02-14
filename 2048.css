@@ -6,6 +6,11 @@
   display: flex;
   flex-wrap: wrap;
   font-size: 50px;
+
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 
 .cell {
@@ -16,5 +21,32 @@
   flex: 0 0 auto;
   margin: 10px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game {
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
 }
 
+.n2{background-color: rgb(255, 0, 0);}
+.n4{background-color: orange;}
+.n8{background-color: yellow;}
+.n16{background-color: greenyellow;}
+.n32{background-color: lightblue;}
+.n64{background-color: blue;}
+.n128{background-color: blueviolet;}
+.n256{ background-color: dimgray;}
+.n512{ background-color: lightsalmon;}
+.n1024{background-color: burlywood;
+font-size: 40px;}
+.n2048{background-color: bisque;
+  font-size: 40px;}
+.n4096{background-color: crimson;
+  font-size: 40px;}
+.n8192{background-color: gold;
+  font-size: 40px;}
