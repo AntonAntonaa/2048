@@ -12,21 +12,21 @@ let game = function () {
     topscore = Number(topscore1);
   }
 
-  function transposearr() {
+  function transposearr(arr) {
     const newlocation = [];
     for (let i = 0; i < 4; i++) {
       newlocation.push([]);
     }
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        newlocation[j].push(location[i][j]);
+        newlocation[j].push(arr[i][j]);
       }
     }
-    location = newlocation;
+    return newlocation;
   }
 
   function moveup() {
-    transposearr();
+    location = transposearr(location);
     const newlocation = [];
     for (let arr of location) {
       const res = [];
@@ -52,19 +52,27 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation;
-    transposearr();
+
+    const str1 = String(location);
+    const str2 = String(newlocation);
+    if (str1 != str2) {
+      location = newlocation;
+      randomcoordin();
+    }
+    location = transposearr(location);
   }
 
   function movedown() {
-    transposearr();
+    location = transposearr(location);
 
     const newlocation = [];
     for (let arr of location) {
       const res = [];
-      const filter = arr.reverse().filter(function (elem) {
-        return elem != 0;
-      });
+      const filter = arr
+        .filter(function (elem) {
+          return elem != 0;
+        })
+        .reverse();
       while (filter.length > 0) {
         if (filter.length == 1) {
           res.push(filter[0]);
@@ -85,8 +93,15 @@ let game = function () {
       }
       newlocation.push(res.reverse());
     }
-    location = newlocation;
-    transposearr();
+
+    const str1 = String(location);
+    const str2 = String(newlocation);
+    console.log(str1, str2);
+    if (str1 != str2) {
+      location = newlocation;
+      randomcoordin();
+    }
+    location = transposearr(location);
   }
 
   function moveleft() {
@@ -116,7 +131,12 @@ let game = function () {
       }
       newlocation.push(res);
     }
-    location = newlocation;
+    const str1 = String(location);
+    const str2 = String(newlocation);
+    if (str1 != str2) {
+      location = newlocation;
+      randomcoordin();
+    }
   }
 
   function moverigt() {
@@ -147,7 +167,12 @@ let game = function () {
       }
       newlocation.push(res.reverse());
     }
-    location = newlocation;
+    const str1 = String(location);
+    const str2 = String(newlocation);
+    if (str1 != str2) {
+      location = newlocation;
+      randomcoordin();
+    }
   }
 
   function over() {
@@ -204,7 +229,6 @@ let game = function () {
         alert("проебано");
         restart();
       } else {
-        randomcoordin();
         text();
       }
     }
